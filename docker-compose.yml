@@ -1,0 +1,21 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: buch-frontend
+    ports:
+      - "4200:443"
+    volumes:
+      - ./ssl:/etc/nginx/ssl:ro
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - buch-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+networks:
+  buch-network:
+    driver: bridge
