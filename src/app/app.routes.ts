@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
+import { roleGuard } from './core/guards/role.guard';
 
 export const routes: Routes = [
     {
@@ -23,6 +24,8 @@ export const routes: Routes = [
         loadComponent: () =>
             import('./features/anlegen/anlegen.component').then(m => m.AnlegenComponent),
         canActivate: [authGuard],
+        canMatch: [roleGuard],
+        data: { role: 'admin' },
     },
     {
         path: 'buch/:id',
