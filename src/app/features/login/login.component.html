@@ -1,0 +1,85 @@
+<div class="login-page">
+    <div class="hero-section">
+        <div class="hero-content">
+            <!-- Logo/Icon Only for Minimalism -->
+            <mat-icon class="hero-icon">auto_stories</mat-icon>
+            <!-- specific text removed as requested -->
+
+            <div class="features-list">
+                <div class="feature-item">
+                    <mat-icon>search</mat-icon>
+                    <span>Leistungsstarke Suche</span>
+                </div>
+                <div class="feature-item">
+                    <mat-icon>filter_list</mat-icon>
+                    <span>Detaillierte Filter</span>
+                </div>
+                <div class="feature-item">
+                    <mat-icon>security</mat-icon>
+                    <span>Sichere Verwaltung</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="login-section">
+        <mat-card class="login-card slide-up">
+            <mat-card-header>
+                <div class="header-content">
+                    <div class="avatar-container">
+                        <mat-icon>lock</mat-icon>
+                    </div>
+                    <mat-card-title>Willkommen zurück</mat-card-title>
+                    <mat-card-subtitle>Bitte melden Sie sich an</mat-card-subtitle>
+                </div>
+            </mat-card-header>
+
+            <mat-card-content>
+                <!-- Fehlermeldung -->
+                @if (authService.loginError()) {
+                <div class="error-container fade-in">
+                    <mat-icon>error_outline</mat-icon>
+                    <span>{{ authService.loginError() }}</span>
+                </div>
+                }
+
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Benutzername</mat-label>
+                        <input matInput formControlName="username" placeholder="z.B. admin" autocomplete="username" />
+                        <mat-icon matPrefix>person_outline</mat-icon>
+                        @if (loginForm.get('username')?.invalid && loginForm.get('username')?.touched) {
+                        <mat-error>{{ getErrorMessage('username') }}</mat-error>
+                        }
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Passwort</mat-label>
+                        <input matInput formControlName="password" [type]="hidePassword() ? 'password' : 'text'"
+                            placeholder="Ihr Passwort" autocomplete="current-password" />
+                        <mat-icon matPrefix>lock_outline</mat-icon>
+                        <button mat-icon-button matSuffix type="button" (click)="togglePasswordVisibility()"
+                            [attr.aria-label]="hidePassword() ? 'Passwort anzeigen' : 'Passwort verbergen'">
+                            <mat-icon>{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+                        </button>
+                        @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+                        <mat-error>{{ getErrorMessage('password') }}</mat-error>
+                        }
+                    </mat-form-field>
+
+                    <button mat-raised-button color="primary" type="submit" class="login-button"
+                        [disabled]="isLoading()">
+                        @if (isLoading()) {
+                        <mat-spinner diameter="20" color="accent"></mat-spinner>
+                        <span>Wird angemeldet...</span>
+                        } @else {
+                        <span>Anmelden</span>
+                        }
+                    </button>
+                </form>
+            </mat-card-content>
+
+
+        </mat-card>
+    </div>
+</div>

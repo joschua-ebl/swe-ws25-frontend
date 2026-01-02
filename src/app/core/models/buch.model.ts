@@ -1,33 +1,25 @@
-/**
- * Buchart Enum - entspricht dem Backend-Enum
- */
+// Entspricht Backend-Enum
 export enum BuchArt {
     EPUB = 'EPUB',
     HARDCOVER = 'HARDCOVER',
     PAPERBACK = 'PAPERBACK',
 }
 
-/**
- * Titel Model
- */
+// Titel Model
 export interface Titel {
     id?: number;
     titel: string;
     untertitel?: string;
 }
 
-/**
- * Abbildung Model
- */
+// Abbildung Model
 export interface Abbildung {
     id?: number;
     beschriftung: string;
     contentType: string;
 }
 
-/**
- * Buch Model - Hauptentität
- */
+// Hauptentität
 export interface Buch {
     id: number;
     version: number;
@@ -46,25 +38,19 @@ export interface Buch {
     abbildungen?: Abbildung[];
 }
 
-/**
- * Titel Input DTO für Create/Update
- */
+// Titel Input
 export interface TitelInput {
     titel: string;
     untertitel?: string;
 }
 
-/**
- * Abbildung Input DTO für Create/Update
- */
+// Abbildung Input
 export interface AbbildungInput {
     beschriftung: string;
     contentType: string;
 }
 
-/**
- * Buch Input DTO für Create
- */
+// Buch Input für Create
 export interface BuchInput {
     isbn: string;
     rating: number;
@@ -79,9 +65,7 @@ export interface BuchInput {
     abbildungen?: AbbildungInput[];
 }
 
-/**
- * Buch Update DTO (ohne Relationen)
- */
+// Update Input (ohne Relationen)
 export interface BuchUpdate {
     isbn: string;
     rating: number;
@@ -94,9 +78,7 @@ export interface BuchUpdate {
     schlagwoerter?: string[];
 }
 
-/**
- * Suchparameter für die Buch-Suche
- */
+// Suchparameter
 export interface BuchSuchparameter {
     isbn?: string;
     rating?: number;
@@ -113,9 +95,7 @@ export interface BuchSuchparameter {
     size?: number;
 }
 
-/**
- * Pagination Metadaten
- */
+// Pagination Metadaten
 export interface PageMetadata {
     size: number;
     number: number;
@@ -123,17 +103,13 @@ export interface PageMetadata {
     totalPages: number;
 }
 
-/**
- * Page Response für paginierte Ergebnisse
- */
+// Pagination Response
 export interface BuchPage {
     content: Buch[];
     page: PageMetadata;
 }
 
-/**
- * Fehler-Response vom Backend
- */
+// Backend Fehler Response
 export interface ApiError {
     statusCode: number;
     message: string | string[];
