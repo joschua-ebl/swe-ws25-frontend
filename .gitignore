@@ -41,3 +41,8 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Build Logs
+build.log
+build-output.txt
+build-error.txt
