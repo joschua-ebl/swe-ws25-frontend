@@ -1,0 +1,10 @@
+{
+    "/keycloak": {
+        "target": "https://localhost:8843",
+        "secure": false,
+        "changeOrigin": true,
+        "pathRewrite": {
+            "^/keycloak": ""
+        }
+    }
+}

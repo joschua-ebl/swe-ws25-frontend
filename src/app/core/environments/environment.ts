@@ -2,8 +2,9 @@ export const environment = {
     production: false,
     apiUrl: 'https://localhost:3000',
     keycloak: {
-        url: 'https://localhost:8880',
+        url: '/keycloak',
         realm: 'nest',
         clientId: 'nest-client',
+        clientSecret: 'GYPMrpTgFqMN2fKR1IpkfrqhQWaJJYR9',
     },
 };

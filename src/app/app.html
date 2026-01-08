@@ -11,7 +11,7 @@
         <span>Suche</span>
       </a>
 
-      @if (authService.isLoggedIn()) {
+      @if (authService.isLoggedIn() && authService.hasRole('admin')) {
       <a mat-button routerLink="/buch/neu" routerLinkActive="active-link">
         <mat-icon>add</mat-icon>
         <span>Neu anlegen</span>

@@ -154,8 +154,10 @@
                         <mat-spinner diameter="20"></mat-spinner>
                         <span>Wird angelegt...</span>
                         } @else {
-                        <mat-icon>save</mat-icon>
-                        <span>Buch anlegen</span>
+                            <ng-container>
+                                <mat-icon>save</mat-icon>
+                                <span>Buch anlegen</span>
+                            </ng-container>
                         }
                     </button>
                     <button mat-stroked-button type="button" (click)="abbrechen()">

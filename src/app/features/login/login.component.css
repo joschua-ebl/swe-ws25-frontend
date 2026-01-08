@@ -142,3 +142,24 @@ mat-form-field {
     color: #86868b;
     font-size: 13px;
 }
+
+.error-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: rgba(255, 59, 48, 0.1);
+    color: #ff3b30;
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    border: 1px solid rgba(255, 59, 48, 0.2);
+}
+
+.error-container mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}

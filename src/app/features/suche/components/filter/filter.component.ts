@@ -220,7 +220,7 @@ export class FilterComponent {
   }
 
   updateLieferbar(lieferbar: boolean): void {
-    this.stateService.updateCriteria({ lieferbar });
+    this.stateService.updateCriteria({ lieferbar: lieferbar || undefined });
   }
 
   selectRating(rating: number | null): void {

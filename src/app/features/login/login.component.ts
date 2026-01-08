@@ -38,7 +38,7 @@ export class LoginComponent {
     ) {
         this.loginForm = this.fb.group({
             username: ['', [Validators.required]],
-            password: ['', [Validators.required, Validators.minLength(4)]],
+            password: ['', [Validators.required]],
         });
     }
 
@@ -74,9 +74,6 @@ export class LoginComponent {
         const control = this.loginForm.get(field);
         if (control?.hasError('required')) {
             return `${field === 'username' ? 'Benutzername' : 'Passwort'} ist erforderlich`;
-        }
-        if (control?.hasError('minlength')) {
-            return 'Mindestens 4 Zeichen erforderlich';
         }
         return '';
     }

@@ -47,6 +47,7 @@ export class AuthService {
         const body = new URLSearchParams();
         body.set('grant_type', 'password');
         body.set('client_id', environment.keycloak.clientId);
+        body.set('client_secret', environment.keycloak.clientSecret);
         body.set('username', username);
         body.set('password', password);
 
@@ -67,6 +68,10 @@ export class AuthService {
             catchError((error: { error?: LoginError }) => {
                 const errorMessage =
                     error.error?.error_description || error.error?.error || 'Login fehlgeschlagen';
+
+                // Debugging Log
+                console.error('Login Error Details:', error);
+
                 this._loginError.set(errorMessage);
                 return of(false);
             }),
@@ -137,12 +142,19 @@ export class AuthService {
 
         try {
             const payload = JSON.parse(atob(token.split('.')[1]));
-            // Keycloak: realm_access.roles oder resource_access.{client}.roles
-            // Hier prüfen wir realm_access für 'admin' Rolle
-            if (payload.realm_access && Array.isArray(payload.realm_access.roles)) {
-                return payload.realm_access.roles;
+            const roles: string[] = [];
+
+            // Keycloak Realm Roles
+            if (payload.realm_access?.roles) {
+                roles.push(...payload.realm_access.roles);
             }
-            return [];
+
+            // Keycloak Client Roles (nest-client)
+            if (payload.resource_access?.['nest-client']?.roles) {
+                roles.push(...payload.resource_access['nest-client'].roles);
+            }
+
+            return roles;
         } catch {
             return [];
         }

@@ -16,7 +16,7 @@ const INITIAL_CRITERIA: BuchSuchparameter = {
     size: 10,
     javascript: false,
     typescript: false,
-    lieferbar: false,
+    lieferbar: undefined,
     rating: undefined,
     art: undefined,
     titel: '',
