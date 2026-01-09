@@ -1,0 +1,95 @@
+@startuml Bücherverwaltung_Zustandsdiagramm
+
+' Styling
+skinparam backgroundColor #FEFEFE
+skinparam state {
+    BackgroundColor #E3F2FD
+    BorderColor #1976D2
+    ArrowColor #1976D2
+    FontColor #333333
+}
+skinparam note {
+    BackgroundColor #FFF9C4
+    BorderColor #F9A825
+}
+
+title Zustandsdiagramm - Angular Frontend Bücherverwaltung
+
+' Initial State
+[*] --> NichtAngemeldet
+
+' States Definition
+state "Nicht angemeldet" as NichtAngemeldet {
+    state "Suche (öffentlich)" as SuchePublic
+    state "Login-Formular" as LoginForm
+    state "Detail-Ansicht" as DetailPublic
+    
+    [*] --> SuchePublic : Startseite
+    
+    SuchePublic --> LoginForm : Anmelden klicken
+    SuchePublic --> DetailPublic : Buch auswählen
+    DetailPublic --> SuchePublic : Zurück
+    LoginForm --> SuchePublic : Abbrechen
+}
+
+state "Angemeldet" as Angemeldet {
+    state "Suche (erweitert)" as SucheAuth
+    state "Detail-Ansicht" as DetailAuth
+    state "Neues Buch anlegen" as Anlegen
+    
+    [*] --> SucheAuth
+    
+    SucheAuth --> DetailAuth : Buch auswählen
+    SucheAuth --> Anlegen : Neu anlegen
+    DetailAuth --> SucheAuth : Zurück
+    Anlegen --> DetailAuth : Erfolgreich angelegt
+    Anlegen --> SucheAuth : Abbrechen
+}
+
+' Transitions between main states
+NichtAngemeldet --> Angemeldet : Login erfolgreich
+Angemeldet --> NichtAngemeldet : Logout / Token abgelaufen
+
+' Notes
+note right of LoginForm
+  - Benutzername
+  - Passwort
+  - Fehlermeldung bei
+    ungültigen Credentials
+end note
+
+note right of SucheAuth
+  Suchformular mit:
+  - Textfelder (Titel, ISBN)
+  - Dropdown (Art)
+  - Radio Buttons (Rating)
+  - Checkboxen (Lieferbar)
+  - Pagination
+end note
+
+note right of Anlegen
+  Formular mit Validierung:
+  - ISBN (Format-Check)
+  - Rating (0-5)
+  - Preis (positiv)
+  - Titel (required)
+end note
+
+note bottom of DetailAuth
+  Zeigt alle Buch-Attribute:
+  ISBN, Titel, Art, Rating,
+  Preis, Rabatt, Lieferbar,
+  Datum, Homepage, Schlagwörter
+end note
+
+' Error Handling
+state "API-Fehler" as ApiError #FFEBEE
+SucheAuth --> ApiError : REST-Aufruf fehlgeschlagen
+Anlegen --> ApiError : Validierungsfehler
+ApiError --> SucheAuth : Fehler bestätigt
+ApiError --> Anlegen : Korrektur
+
+' Session Timeout
+Angemeldet --> NichtAngemeldet : 401 Unauthorized
+
+@enduml
