@@ -23,22 +23,17 @@ test.describe('Suche', () => {
     });
 
     test('sollte nach Titel filtern können', async ({ suchePage }) => {
-        // Suche nach einem existierenden Titel
-        await suchePage.titelInput.fill('Alice');
-        await suchePage.suchenButton.click();
-        await suchePage.waitForResults();
+        await suchePage.searchByTitel('Alice');
 
         // Ergebnis-Grid sollte sichtbar sein
         await expect(suchePage.suchergebnisseGrid).toBeVisible();
     });
 
     test('sollte leere Ergebnisse bei unbekanntem Titel anzeigen', async ({ suchePage }) => {
-        await suchePage.titelInput.fill('XYZ_NICHT_VORHANDEN_123456789');
-        await suchePage.suchenButton.click();
-        await suchePage.waitForResults();
+        await suchePage.searchByTitel('XYZ_NICHT_VORHANDEN_123');
 
         // Backend könnte 404 (Fehler) oder leere Ergebnisse zurückgeben
-        const hasNoResults = await suchePage.noResultsMessage.isVisible();
+        const hasNoResults = await suchePage.hasNoResults();
         const hasError = await suchePage.errorMessage.isVisible();
         expect(hasNoResults || hasError).toBe(true);
     });
@@ -47,10 +42,8 @@ test.describe('Suche', () => {
         await suchePage.selectArt('ePub');
         await suchePage.applyFilters();
 
-        // Es sollte entweder Ergebnisse oder keine Ergebnisse geben
-        const hasResults = await suchePage.suchergebnisseGrid.isVisible();
-        const hasNoResults = await suchePage.noResultsMessage.isVisible();
-        expect(hasResults || hasNoResults).toBe(true);
+        // Grid sollte sichtbar sein
+        await expect(suchePage.suchergebnisseGrid).toBeVisible();
     });
 
     test('sollte Lieferbar-Filter aktivieren können', async ({ suchePage }) => {
