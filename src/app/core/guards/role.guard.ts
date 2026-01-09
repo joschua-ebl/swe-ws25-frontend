@@ -1,23 +1,22 @@
 import { inject } from '@angular/core';
-import { Router, type CanMatchFn, Route, UrlSegment } from '@angular/router';
+import { type CanMatchFn, Route, UrlSegment } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 // Verhindert Laden der Route ohne passende Rolle
-export const roleGuard: CanMatchFn = (route: Route, segments: UrlSegment[]) => {
-    const authService = inject(AuthService);
-    const router = inject(Router);
+export const roleGuard: CanMatchFn = (route: Route, _segments: UrlSegment[]) => {
+  const authService = inject(AuthService);
 
-    const expectedRole = route.data?.['role'] as string;
+  const expectedRole = route.data?.['role'] as string;
 
-    if (!expectedRole) {
-        console.warn('RoleGuard used but no role defined in route data');
-        return true;
-    }
+  if (!expectedRole) {
+    console.warn('RoleGuard used but no role defined in route data');
+    return true;
+  }
 
-    if (authService.isLoggedIn() && authService.hasRole(expectedRole)) {
-        return true;
-    }
+  if (authService.isLoggedIn() && authService.hasRole(expectedRole)) {
+    return true;
+  }
 
-    // 404 simulieren für unautorisierte Nutzer
-    return false;
+  // 404 simulieren für unautorisierte Nutzer
+  return false;
 };

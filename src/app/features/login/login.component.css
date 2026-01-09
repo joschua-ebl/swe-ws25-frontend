@@ -1,165 +1,174 @@
 .login-page {
-    display: flex;
-    min-height: calc(100vh - 64px);
-    background: #f5f5f7;
-    position: relative;
-    overflow: hidden;
+  display: flex;
+  min-height: calc(100vh - 64px);
+  background: #f5f5f7;
+  position: relative;
+  overflow: hidden;
 }
 
 /* Beautiful Abstract Mesh Gradient Background */
 .login-page::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at 50% 50%, rgba(0, 122, 255, 0.15), transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 45, 85, 0.15), transparent 40%),
-        radial-gradient(circle at 20% 80%, rgba(90, 200, 250, 0.15), transparent 40%);
-    filter: blur(80px);
-    z-index: 0;
-    animation: bgPulse 20s ease-in-out infinite alternate;
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(0, 122, 255, 0.15), transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 45, 85, 0.15), transparent 40%),
+    radial-gradient(circle at 20% 80%, rgba(90, 200, 250, 0.15), transparent 40%);
+  filter: blur(80px);
+  z-index: 0;
+  animation: bgPulse 20s ease-in-out infinite alternate;
 }
 
 @keyframes bgPulse {
-    0% {
-        transform: scale(1);
-    }
+  0% {
+    transform: scale(1);
+  }
 
-    100% {
-        transform: scale(1.1);
-    }
+  100% {
+    transform: scale(1.1);
+  }
 }
 
 /* Hide Hero Section - Go for pure centered minimalist Apple look */
 .hero-section {
-    display: none;
+  display: none;
 }
 
 .login-section {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    z-index: 1;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 1;
 }
 
 .login-card {
-    width: 100%;
-    max-width: 400px;
-    padding: 40px;
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
 
-    /* Glass Effect override */
-    background: rgba(255, 255, 255, 0.65) !important;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05) !important;
-    border-radius: 24px !important;
+  /* Glass Effect override */
+  background: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05) !important;
+  border-radius: 24px !important;
 }
 
 /* Header Styling - Minimalist */
 .header-content {
-    text-align: center;
-    margin-bottom: 32px;
+  text-align: center;
+  margin-bottom: 32px;
 }
 
 .avatar-container {
-    display: none;
-    /* Remove avatar for purism */
+  display: none;
+  /* Remove avatar for purism */
 }
 
 .hero-icon {
-    font-size: 80px;
-    width: 80px;
-    height: 80px;
-    color: #007aff;
-    margin-bottom: 32px;
+  font-size: 80px;
+  width: 80px;
+  height: 80px;
+  color: #007aff;
+  margin-bottom: 32px;
 }
 
 .features-list {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 /* Form Styling */
 .login-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 /* Custom Input Styling to look like Apple Inputs */
 mat-form-field {
-    width: 100%;
+  width: 100%;
 }
 
 ::ng-deep .mat-mdc-text-field-wrapper {
-    background-color: white !important;
-    border-radius: 12px !important;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+  background-color: white !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 ::ng-deep .mat-mdc-form-field-focus-overlay {
-    background-color: transparent !important;
+  background-color: transparent !important;
 }
 
 .login-button {
-    height: 56px;
-    font-size: 18px;
-    font-weight: 600;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
-    /* Force Sans-Serif */
-    margin-top: 16px;
-    background: rgba(225, 225, 230, 0.75) !important;
-    /* Darker, more visible gray */
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.6) !important;
-    color: #1d1d1f !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
-    border-radius: 28px !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    letter-spacing: 0.5px;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  height: 56px;
+  font-size: 18px;
+  font-weight: 600;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    sans-serif !important;
+  /* Force Sans-Serif */
+  margin-top: 16px;
+  background: rgba(225, 225, 230, 0.75) !important;
+  /* Darker, more visible gray */
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  color: #1d1d1f !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  border-radius: 28px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 0.5px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .login-button:hover {
-    background: rgba(215, 215, 220, 0.85) !important;
-    /* Even darker on hover */
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
-    transform: translateY(-2px);
+  background: rgba(215, 215, 220, 0.85) !important;
+  /* Even darker on hover */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
+  transform: translateY(-2px);
 }
 
 .credentials-hint {
-    text-align: center;
-    margin-top: 24px;
-    color: #86868b;
-    font-size: 13px;
+  text-align: center;
+  margin-top: 24px;
+  color: #86868b;
+  font-size: 13px;
 }
 
 .error-container {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background-color: rgba(255, 59, 48, 0.1);
-    color: #ff3b30;
-    padding: 12px 16px;
-    border-radius: 12px;
-    margin-bottom: 24px;
-    font-size: 14px;
-    font-weight: 500;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    border: 1px solid rgba(255, 59, 48, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: rgba(255, 59, 48, 0.1);
+  color: #ff3b30;
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    sans-serif;
+  border: 1px solid rgba(255, 59, 48, 0.2);
 }
 
 .error-container mat-icon {
-    font-size: 20px;
-    width: 20px;
-    height: 20px;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
 }

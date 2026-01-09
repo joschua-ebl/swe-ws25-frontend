@@ -6,16 +6,21 @@
     </a>
 
     <nav class="nav-links">
-      <a mat-button routerLink="/suche" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: false }">
+      <a
+        mat-button
+        routerLink="/suche"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: false }"
+      >
         <mat-icon>search</mat-icon>
         <span>Suche</span>
       </a>
 
       @if (authService.isLoggedIn() && authService.hasRole('admin')) {
-      <a mat-button routerLink="/buch/neu" routerLinkActive="active-link">
-        <mat-icon>add</mat-icon>
-        <span>Neu anlegen</span>
-      </a>
+        <a mat-button routerLink="/buch/neu" routerLinkActive="active-link">
+          <mat-icon>add</mat-icon>
+          <span>Neu anlegen</span>
+        </a>
       }
     </nav>
 
@@ -23,22 +28,22 @@
 
     <div class="toolbar-right">
       @if (authService.isLoggedIn()) {
-      <button mat-button [matMenuTriggerFor]="userMenu" class="user-btn">
-        <mat-icon>account_circle</mat-icon>
-        <span>{{ authService.username() }}</span>
-        <mat-icon>arrow_drop_down</mat-icon>
-      </button>
-      <mat-menu #userMenu="matMenu">
-        <button mat-menu-item (click)="logout()">
-          <mat-icon>logout</mat-icon>
-          <span>Abmelden</span>
+        <button mat-button [matMenuTriggerFor]="userMenu" class="user-btn">
+          <mat-icon>account_circle</mat-icon>
+          <span>{{ authService.username() }}</span>
+          <mat-icon>arrow_drop_down</mat-icon>
         </button>
-      </mat-menu>
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Abmelden</span>
+          </button>
+        </mat-menu>
       } @else {
-      <a mat-raised-button color="primary" routerLink="/login" class="login-btn">
-        <mat-icon>login</mat-icon>
-        <span>Anmelden</span>
-      </a>
+        <a mat-raised-button color="primary" routerLink="/login" class="login-btn">
+          <mat-icon>login</mat-icon>
+          <span>Anmelden</span>
+        </a>
       }
     </div>
   </div>

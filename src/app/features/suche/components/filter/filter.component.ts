@@ -22,7 +22,7 @@ import { BuchArt } from '../../../../core/models/buch.model';
     MatButtonModule,
     MatDividerModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
   ],
   template: `
     <div class="filter-container">
@@ -32,14 +32,15 @@ import { BuchArt } from '../../../../core/models/buch.model';
           <mat-icon>restart_alt</mat-icon>
         </button>
       </div>
-      
+
       <mat-divider></mat-divider>
-      
+
       <!-- Verfügbarkeit -->
       <div class="filter-section">
-        <mat-checkbox 
-          [ngModel]="stateService.criteria().lieferbar" 
-          (ngModelChange)="updateLieferbar($event)">
+        <mat-checkbox
+          [ngModel]="stateService.criteria().lieferbar"
+          (ngModelChange)="updateLieferbar($event)"
+        >
           Nur lieferbar
         </mat-checkbox>
       </div>
@@ -50,25 +51,27 @@ import { BuchArt } from '../../../../core/models/buch.model';
       <div class="filter-section">
         <h4>Rating</h4>
         <div class="star-rating-filter">
-          <button 
-            mat-button 
+          <button
+            mat-button
             class="reset-rating-btn"
             [class.active]="selectedRating() === null"
             (click)="selectRating(null)"
-            matTooltip="Alle anzeigen">
+            matTooltip="Alle anzeigen"
+          >
             Alle
           </button>
           <div class="stars-container">
             @for (star of [1, 2, 3, 4, 5]; track star) {
-              <button 
-                mat-icon-button 
+              <button
+                mat-icon-button
                 class="star-btn"
                 [class.filled]="star <= (hoveredRating() ?? selectedRating() ?? 0)"
                 [class.selected]="selectedRating() !== null && star <= selectedRating()!"
                 (mouseenter)="hoveredRating.set(star)"
                 (mouseleave)="hoveredRating.set(null)"
                 (click)="selectRating(star)"
-                [matTooltip]="star + (star === 1 ? ' Stern' : ' Sterne')">
+                [matTooltip]="star + (star === 1 ? ' Stern' : ' Sterne')"
+              >
                 <mat-icon class="star-icon">
                   {{ star <= (hoveredRating() ?? selectedRating() ?? 0) ? 'star' : 'star_border' }}
                 </mat-icon>
@@ -88,9 +91,7 @@ import { BuchArt } from '../../../../core/models/buch.model';
         <h4>Art</h4>
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Buchart</mat-label>
-          <mat-select 
-            [ngModel]="stateService.criteria().art" 
-            (ngModelChange)="updateArt($event)">
+          <mat-select [ngModel]="stateService.criteria().art" (ngModelChange)="updateArt($event)">
             <mat-option [value]="null">Alle</mat-option>
             @for (art of buchArtOptions; track art) {
               <mat-option [value]="art">{{ buchArtLabels[art] }}</mat-option>
@@ -100,104 +101,116 @@ import { BuchArt } from '../../../../core/models/buch.model';
       </div>
 
       <div class="filter-actions mt-auto">
-         <button mat-raised-button color="primary" class="w-100" (click)="applyFilters()">
-           <mat-icon>filter_list</mat-icon> Filter anwenden
-         </button>
+        <button mat-raised-button color="primary" class="w-100" (click)="applyFilters()">
+          <mat-icon>filter_list</mat-icon> Filter anwenden
+        </button>
       </div>
     </div>
   `,
-  styles: [`
-    .filter-container {
-      padding: 32px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      height: 100%;
-      box-sizing: border-box;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
-    .filter-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .filter-header h3 { 
-      margin: 0; 
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      font-family: 'Inter', sans-serif;
-    }
-    
-    mat-divider {
-      border-top-color: rgba(0,0,0,0.06);
-    }
-    
-    .filter-section {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .filter-section h4 {
-      margin: 0;
-      font-size: 13px;
-      color: #86868b;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    
-    /* Star Rating Styles */
-    .star-rating-filter {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .reset-rating-btn {
-      align-self: flex-start;
-      font-size: 14px;
-      color: #86868b;
-      padding: 4px 12px;
-      min-height: 32px;
-      border-radius: 16px;
-      transition: all 0.2s ease;
-    }
-    .reset-rating-btn.active {
-      background-color: rgba(0, 122, 255, 0.1);
-      color: #007aff;
-    }
-    .stars-container {
-      display: flex;
-      gap: 4px;
-    }
-    .star-btn {
-      width: 40px;
-      height: 40px;
-      transition: transform 0.15s ease;
-    }
-    .star-btn:hover {
-      transform: scale(1.15);
-    }
-    .star-icon {
-      font-size: 28px;
-      width: 28px;
-      height: 28px;
-      color: #d1d1d6;
-      transition: color 0.2s ease;
-    }
-    .star-btn.filled .star-icon,
-    .star-btn.selected .star-icon {
-      color: #ffc107;
-    }
-    .rating-label {
-      font-size: 13px;
-      color: #1d1d1f;
-      font-weight: 500;
-    }
-    
-    .w-100 { width: 100%; }
-    .mt-auto { margin-top: auto; }
-  `]
+  styles: [
+    `
+      .filter-container {
+        padding: 32px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        height: 100%;
+        box-sizing: border-box;
+        font-family:
+          'Inter',
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          Roboto,
+          sans-serif;
+      }
+      .filter-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .filter-header h3 {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        font-family: 'Inter', sans-serif;
+      }
+
+      mat-divider {
+        border-top-color: rgba(0, 0, 0, 0.06);
+      }
+
+      .filter-section {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .filter-section h4 {
+        margin: 0;
+        font-size: 13px;
+        color: #86868b;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      /* Star Rating Styles */
+      .star-rating-filter {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .reset-rating-btn {
+        align-self: flex-start;
+        font-size: 14px;
+        color: #86868b;
+        padding: 4px 12px;
+        min-height: 32px;
+        border-radius: 16px;
+        transition: all 0.2s ease;
+      }
+      .reset-rating-btn.active {
+        background-color: rgba(0, 122, 255, 0.1);
+        color: #007aff;
+      }
+      .stars-container {
+        display: flex;
+        gap: 4px;
+      }
+      .star-btn {
+        width: 40px;
+        height: 40px;
+        transition: transform 0.15s ease;
+      }
+      .star-btn:hover {
+        transform: scale(1.15);
+      }
+      .star-icon {
+        font-size: 28px;
+        width: 28px;
+        height: 28px;
+        color: #d1d1d6;
+        transition: color 0.2s ease;
+      }
+      .star-btn.filled .star-icon,
+      .star-btn.selected .star-icon {
+        color: #ffc107;
+      }
+      .rating-label {
+        font-size: 13px;
+        color: #1d1d1f;
+        font-weight: 500;
+      }
+
+      .w-100 {
+        width: 100%;
+      }
+      .mt-auto {
+        margin-top: auto;
+      }
+    `,
+  ],
 })
 export class FilterComponent {
   buchArtOptions = Object.values(BuchArt);
@@ -206,7 +219,7 @@ export class FilterComponent {
   buchArtLabels: Record<BuchArt, string> = {
     [BuchArt.EPUB]: 'ePub',
     [BuchArt.HARDCOVER]: 'Hardcover',
-    [BuchArt.PAPERBACK]: 'Paperback'
+    [BuchArt.PAPERBACK]: 'Paperback',
   };
 
   selectedRating = signal<number | null>(null);

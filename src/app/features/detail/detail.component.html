@@ -1,162 +1,161 @@
 <div class="detail-container page-container">
-    <!-- Zurück-Button -->
-    <button mat-button class="back-button" (click)="zurueck()">
-        <mat-icon>arrow_back</mat-icon>
-        Zurück zur Suche
-    </button>
+  <!-- Zurück-Button -->
+  <button mat-button class="back-button" (click)="zurueck()">
+    <mat-icon>arrow_back</mat-icon>
+    Zurück zur Suche
+  </button>
 
-    <!-- Ladeanzeige -->
-    @if (buchService.isLoading()) {
+  <!-- Ladeanzeige -->
+  @if (buchService.isLoading()) {
     <div class="loading-container">
-        <mat-spinner diameter="40"></mat-spinner>
-        <span>Buch wird geladen...</span>
+      <mat-spinner diameter="40"></mat-spinner>
+      <span>Buch wird geladen...</span>
     </div>
-    }
+  }
 
-    <!-- Fehlermeldung -->
-    @if (buchService.error()) {
+  <!-- Fehlermeldung -->
+  @if (buchService.error()) {
     <div class="error-container fade-in">
-        <mat-icon>error</mat-icon>
-        <span>{{ buchService.error() }}</span>
+      <mat-icon>error</mat-icon>
+      <span>{{ buchService.error() }}</span>
     </div>
-    }
+  }
 
-    <!-- Buchdetails -->
-    @if (buch() && !buchService.isLoading()) {
+  <!-- Buchdetails -->
+  @if (buch() && !buchService.isLoading()) {
     <mat-card class="detail-card slide-up">
-        <mat-card-header>
-            <mat-icon mat-card-avatar class="book-icon">menu_book</mat-icon>
-            <mat-card-title>{{ buch()?.titel?.titel || 'Unbekannter Titel' }}</mat-card-title>
-            @if (buch()?.titel?.untertitel) {
-            <mat-card-subtitle>{{ buch()?.titel?.untertitel }}</mat-card-subtitle>
-            }
-        </mat-card-header>
+      <mat-card-header>
+        <mat-icon mat-card-avatar class="book-icon">menu_book</mat-icon>
+        <mat-card-title>{{ buch()?.titel?.titel || 'Unbekannter Titel' }}</mat-card-title>
+        @if (buch()?.titel?.untertitel) {
+          <mat-card-subtitle>{{ buch()?.titel?.untertitel }}</mat-card-subtitle>
+        }
+      </mat-card-header>
 
-        <mat-card-content>
-            <div class="detail-grid">
-                <!-- ISBN -->
-                <div class="detail-item">
-                    <div class="detail-label">
-                        <mat-icon>qr_code</mat-icon>
-                        ISBN
-                    </div>
-                    <div class="detail-value">{{ buch()?.isbn }}</div>
-                </div>
-
-                <!-- Art -->
-                <div class="detail-item">
-                    <div class="detail-label">
-                        <mat-icon>category</mat-icon>
-                        Art
-                    </div>
-                    <div class="detail-value">
-                        <mat-chip>{{ buch()?.art || '-' }}</mat-chip>
-                    </div>
-                </div>
-
-                <!-- Rating -->
-                <div class="detail-item">
-                    <div class="detail-label">
-                        <mat-icon>star</mat-icon>
-                        Rating
-                    </div>
-                    <div class="detail-value rating">
-                        <span class="stars">{{ getRatingStars(buch()?.rating || 0) }}</span>
-                        <span class="rating-text">({{ buch()?.rating }} von 5)</span>
-                    </div>
-                </div>
-
-                <!-- Preis -->
-                <div class="detail-item">
-                    <div class="detail-label">
-                        <mat-icon>euro</mat-icon>
-                        Preis
-                    </div>
-                    <div class="detail-value price">{{ formatPreis(buch()?.preis || 0) }}</div>
-                </div>
-
-                <!-- Rabatt -->
-                <div class="detail-item">
-                    <div class="detail-label">
-                        <mat-icon>local_offer</mat-icon>
-                        Rabatt
-                    </div>
-                    <div class="detail-value">{{ formatRabatt(buch()?.rabatt || 0) }}</div>
-                </div>
-
-                <!-- Lieferbar -->
-                <div class="detail-item">
-                    <div class="detail-label">
-                        <mat-icon>local_shipping</mat-icon>
-                        Lieferbar
-                    </div>
-                    <div class="detail-value">
-                        @if (buch()?.lieferbar) {
-                        <mat-chip class="available">
-                            <mat-icon>check</mat-icon>
-                            Verfügbar
-                        </mat-chip>
-                        } @else {
-                        <mat-chip class="unavailable">
-                            <mat-icon>close</mat-icon>
-                            Nicht verfügbar
-                        </mat-chip>
-                        }
-                    </div>
-                </div>
-
-                <!-- Datum -->
-                <div class="detail-item">
-                    <div class="detail-label">
-                        <mat-icon>calendar_today</mat-icon>
-                        Erscheinungsdatum
-                    </div>
-                    <div class="detail-value">{{ formatDatum(buch()?.datum) }}</div>
-                </div>
-
-                <!-- Homepage -->
-                @if (buch()?.homepage) {
-                <div class="detail-item">
-                    <div class="detail-label">
-                        <mat-icon>language</mat-icon>
-                        Homepage
-                    </div>
-                    <div class="detail-value">
-                        <a [href]="buch()?.homepage" target="_blank" rel="noopener noreferrer">
-                            {{ buch()?.homepage }}
-                            <mat-icon class="external-link">open_in_new</mat-icon>
-                        </a>
-                    </div>
-                </div>
-                }
-
-                <!-- Schlagwörter -->
-                @if (buch()?.schlagwoerter && buch()!.schlagwoerter!.length > 0) {
-                <div class="detail-item full-width">
-                    <div class="detail-label">
-                        <mat-icon>label</mat-icon>
-                        Schlagwörter
-                    </div>
-                    <div class="detail-value tags">
-                        @for (tag of buch()?.schlagwoerter; track tag) {
-                        <mat-chip>{{ tag }}</mat-chip>
-                        }
-                    </div>
-                </div>
-                }
+      <mat-card-content>
+        <div class="detail-grid">
+          <!-- ISBN -->
+          <div class="detail-item">
+            <div class="detail-label">
+              <mat-icon>qr_code</mat-icon>
+              ISBN
             </div>
+            <div class="detail-value">{{ buch()?.isbn }}</div>
+          </div>
 
-            <mat-divider class="divider"></mat-divider>
-
-            <!-- Metadaten -->
-            <div class="metadata">
-                <small>
-                    <mat-icon>info</mat-icon>
-                    Version: {{ buch()?.version }} |
-                    ID: {{ buch()?.id }}
-                </small>
+          <!-- Art -->
+          <div class="detail-item">
+            <div class="detail-label">
+              <mat-icon>category</mat-icon>
+              Art
             </div>
-        </mat-card-content>
+            <div class="detail-value">
+              <mat-chip>{{ buch()?.art || '-' }}</mat-chip>
+            </div>
+          </div>
+
+          <!-- Rating -->
+          <div class="detail-item">
+            <div class="detail-label">
+              <mat-icon>star</mat-icon>
+              Rating
+            </div>
+            <div class="detail-value rating">
+              <span class="stars">{{ getRatingStars(buch()?.rating || 0) }}</span>
+              <span class="rating-text">({{ buch()?.rating }} von 5)</span>
+            </div>
+          </div>
+
+          <!-- Preis -->
+          <div class="detail-item">
+            <div class="detail-label">
+              <mat-icon>euro</mat-icon>
+              Preis
+            </div>
+            <div class="detail-value price">{{ formatPreis(buch()?.preis || 0) }}</div>
+          </div>
+
+          <!-- Rabatt -->
+          <div class="detail-item">
+            <div class="detail-label">
+              <mat-icon>local_offer</mat-icon>
+              Rabatt
+            </div>
+            <div class="detail-value">{{ formatRabatt(buch()?.rabatt || 0) }}</div>
+          </div>
+
+          <!-- Lieferbar -->
+          <div class="detail-item">
+            <div class="detail-label">
+              <mat-icon>local_shipping</mat-icon>
+              Lieferbar
+            </div>
+            <div class="detail-value">
+              @if (buch()?.lieferbar) {
+                <mat-chip class="available">
+                  <mat-icon>check</mat-icon>
+                  Verfügbar
+                </mat-chip>
+              } @else {
+                <mat-chip class="unavailable">
+                  <mat-icon>close</mat-icon>
+                  Nicht verfügbar
+                </mat-chip>
+              }
+            </div>
+          </div>
+
+          <!-- Datum -->
+          <div class="detail-item">
+            <div class="detail-label">
+              <mat-icon>calendar_today</mat-icon>
+              Erscheinungsdatum
+            </div>
+            <div class="detail-value">{{ formatDatum(buch()?.datum) }}</div>
+          </div>
+
+          <!-- Homepage -->
+          @if (buch()?.homepage) {
+            <div class="detail-item">
+              <div class="detail-label">
+                <mat-icon>language</mat-icon>
+                Homepage
+              </div>
+              <div class="detail-value">
+                <a [href]="buch()?.homepage" target="_blank" rel="noopener noreferrer">
+                  {{ buch()?.homepage }}
+                  <mat-icon class="external-link">open_in_new</mat-icon>
+                </a>
+              </div>
+            </div>
+          }
+
+          <!-- Schlagwörter -->
+          @if (buch()?.schlagwoerter && buch()!.schlagwoerter!.length > 0) {
+            <div class="detail-item full-width">
+              <div class="detail-label">
+                <mat-icon>label</mat-icon>
+                Schlagwörter
+              </div>
+              <div class="detail-value tags">
+                @for (tag of buch()?.schlagwoerter; track tag) {
+                  <mat-chip>{{ tag }}</mat-chip>
+                }
+              </div>
+            </div>
+          }
+        </div>
+
+        <mat-divider class="divider"></mat-divider>
+
+        <!-- Metadaten -->
+        <div class="metadata">
+          <small>
+            <mat-icon>info</mat-icon>
+            Version: {{ buch()?.version }} | ID: {{ buch()?.id }}
+          </small>
+        </div>
+      </mat-card-content>
     </mat-card>
-    }
+  }
 </div>

@@ -1,117 +1,117 @@
 // Entspricht Backend-Enum
 export enum BuchArt {
-    EPUB = 'EPUB',
-    HARDCOVER = 'HARDCOVER',
-    PAPERBACK = 'PAPERBACK',
+  EPUB = 'EPUB',
+  HARDCOVER = 'HARDCOVER',
+  PAPERBACK = 'PAPERBACK',
 }
 
 // Titel Model
 export interface Titel {
-    id?: number;
-    titel: string;
-    untertitel?: string;
+  id?: number;
+  titel: string;
+  untertitel?: string;
 }
 
 // Abbildung Model
 export interface Abbildung {
-    id?: number;
-    beschriftung: string;
-    contentType: string;
+  id?: number;
+  beschriftung: string;
+  contentType: string;
 }
 
 // Hauptentität
 export interface Buch {
-    id: number;
-    version: number;
-    isbn: string;
-    rating: number;
-    art?: BuchArt;
-    preis: number;
-    rabatt: number;
-    lieferbar: boolean;
-    datum?: string;
-    homepage?: string;
-    schlagwoerter?: string[];
-    erzeugt?: string;
-    aktualisiert?: string;
-    titel?: Titel;
-    abbildungen?: Abbildung[];
+  id: number;
+  version: number;
+  isbn: string;
+  rating: number;
+  art?: BuchArt;
+  preis: number;
+  rabatt: number;
+  lieferbar: boolean;
+  datum?: string;
+  homepage?: string;
+  schlagwoerter?: string[];
+  erzeugt?: string;
+  aktualisiert?: string;
+  titel?: Titel;
+  abbildungen?: Abbildung[];
 }
 
 // Titel Input
 export interface TitelInput {
-    titel: string;
-    untertitel?: string;
+  titel: string;
+  untertitel?: string;
 }
 
 // Abbildung Input
 export interface AbbildungInput {
-    beschriftung: string;
-    contentType: string;
+  beschriftung: string;
+  contentType: string;
 }
 
 // Buch Input für Create
 export interface BuchInput {
-    isbn: string;
-    rating: number;
-    art?: BuchArt;
-    preis: number;
-    rabatt?: number;
-    lieferbar?: boolean;
-    datum?: string;
-    homepage?: string;
-    schlagwoerter?: string[];
-    titel: TitelInput;
-    abbildungen?: AbbildungInput[];
+  isbn: string;
+  rating: number;
+  art?: BuchArt;
+  preis: number;
+  rabatt?: number;
+  lieferbar?: boolean;
+  datum?: string;
+  homepage?: string;
+  schlagwoerter?: string[];
+  titel: TitelInput;
+  abbildungen?: AbbildungInput[];
 }
 
 // Update Input (ohne Relationen)
 export interface BuchUpdate {
-    isbn: string;
-    rating: number;
-    art?: BuchArt;
-    preis: number;
-    rabatt?: number;
-    lieferbar?: boolean;
-    datum?: string;
-    homepage?: string;
-    schlagwoerter?: string[];
+  isbn: string;
+  rating: number;
+  art?: BuchArt;
+  preis: number;
+  rabatt?: number;
+  lieferbar?: boolean;
+  datum?: string;
+  homepage?: string;
+  schlagwoerter?: string[];
 }
 
 // Suchparameter
 export interface BuchSuchparameter {
-    isbn?: string;
-    rating?: number;
-    art?: BuchArt;
-    preis?: number;
-    rabatt?: number;
-    lieferbar?: boolean;
-    datum?: string;
-    homepage?: string;
-    javascript?: boolean;
-    typescript?: boolean;
-    titel?: string;
-    page?: number;
-    size?: number;
+  isbn?: string;
+  rating?: number;
+  art?: BuchArt;
+  preis?: number;
+  rabatt?: number;
+  lieferbar?: boolean;
+  datum?: string;
+  homepage?: string;
+  javascript?: boolean;
+  typescript?: boolean;
+  titel?: string;
+  page?: number;
+  size?: number;
 }
 
 // Pagination Metadaten
 export interface PageMetadata {
-    size: number;
-    number: number;
-    totalElements: number;
-    totalPages: number;
+  size: number;
+  number: number;
+  totalElements: number;
+  totalPages: number;
 }
 
 // Pagination Response
 export interface BuchPage {
-    content: Buch[];
-    page: PageMetadata;
+  content: Buch[];
+  page: PageMetadata;
 }
 
 // Backend Fehler Response
 export interface ApiError {
-    statusCode: number;
-    message: string | string[];
-    error?: string;
+  statusCode: number;
+  message: string | string[];
+  error?: string;
 }

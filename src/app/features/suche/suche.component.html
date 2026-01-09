@@ -1,21 +1,26 @@
 <mat-sidenav-container class="suche-container">
-    <mat-sidenav #sidenav [mode]="isMobile() ? 'over' : 'side'" [opened]="!isMobile()" class="sidenav">
-        <app-filter></app-filter>
-    </mat-sidenav>
+  <mat-sidenav
+    #sidenav
+    [mode]="isMobile() ? 'over' : 'side'"
+    [opened]="!isMobile()"
+    class="sidenav"
+  >
+    <app-filter></app-filter>
+  </mat-sidenav>
 
-    <mat-sidenav-content class="content">
-        <div class="content-header" *ngIf="isMobile()">
-            <button mat-icon-button (click)="toggleSidenav()">
-                <mat-icon>filter_list</mat-icon>
-            </button>
-            <span class="mobile-title">Filter</span>
-        </div>
+  <mat-sidenav-content class="content">
+    <div class="content-header" *ngIf="isMobile()">
+      <button mat-icon-button (click)="toggleSidenav()">
+        <mat-icon>filter_list</mat-icon>
+      </button>
+      <span class="mobile-title">Filter</span>
+    </div>
 
-        <div class="main-content">
-            <app-searchbar></app-searchbar>
-            <div class="mt-3">
-                <app-book-list></app-book-list>
-            </div>
-        </div>
-    </mat-sidenav-content>
+    <div class="main-content">
+      <app-searchbar></app-searchbar>
+      <div class="mt-3">
+        <app-book-list></app-book-list>
+      </div>
+    </div>
+  </mat-sidenav-content>
 </mat-sidenav-container>

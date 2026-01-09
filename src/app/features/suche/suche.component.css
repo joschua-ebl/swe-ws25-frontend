@@ -1,60 +1,60 @@
 /* Main Container */
 .suche-container {
-    height: calc(100vh - 64px);
-    background-color: transparent;
-    /* Let global bg show through */
+  height: calc(100vh - 64px);
+  background-color: transparent;
+  /* Let global bg show through */
 }
 
 /* Sidebar Glass Panel */
 .sidenav {
-    width: 320px;
-    /* Slightly wider for better breathing room */
-    background: rgba(255, 255, 255, 0.6) !important;
-    /* Semi-transparent */
-    backdrop-filter: blur(30px) !important;
-    -webkit-backdrop-filter: blur(30px) !important;
-    border-right: 1px solid rgba(255, 255, 255, 0.4) !important;
-    box-shadow: 20px 0 40px rgba(0, 0, 0, 0.03);
+  width: 320px;
+  /* Slightly wider for better breathing room */
+  background: rgba(255, 255, 255, 0.6) !important;
+  /* Semi-transparent */
+  backdrop-filter: blur(30px) !important;
+  -webkit-backdrop-filter: blur(30px) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 20px 0 40px rgba(0, 0, 0, 0.03);
 }
 
 .content {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .main-content {
-    padding: 32px;
-    max-width: 1600px;
-    /* Wider content area */
-    margin: 0 auto;
-    width: 100%;
-    box-sizing: border-box;
+  padding: 32px;
+  max-width: 1600px;
+  /* Wider content area */
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Mobile Header */
 .content-header {
-    display: flex;
-    align-items: center;
-    padding: 12px 24px;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .mobile-title {
-    margin-left: 16px;
-    font-weight: 600;
-    font-size: 17px;
+  margin-left: 16px;
+  font-weight: 600;
+  font-size: 17px;
 }
 
 .mt-3 {
-    margin-top: 24px;
-    /* More spacing */
+  margin-top: 24px;
+  /* More spacing */
 }
 
 @media (max-width: 600px) {
-    .main-content {
-        padding: 16px;
-    }
+  .main-content {
+    padding: 16px;
+  }
 }

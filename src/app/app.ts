@@ -24,7 +24,7 @@ import { AuthService } from './core/services/auth.service';
 export class AppComponent {
   title = 'App';
 
-  constructor(readonly authService: AuthService) { }
+  constructor(readonly authService: AuthService) {}
 
   logout(): void {
     this.authService.logout();

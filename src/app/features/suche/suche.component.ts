@@ -10,46 +10,45 @@ import { BookListComponent } from './components/book-list/book-list.component';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
-    selector: 'app-suche',
-    standalone: true,
-    imports: [
-        CommonModule,
-        MatSidenavModule,
-        MatButtonModule,
-        MatIconModule,
-        FilterComponent,
-        SearchbarComponent,
-        BookListComponent
-    ],
-    templateUrl: './suche.component.html',
-    styleUrl: './suche.component.css',
-    providers: [SearchStateService]
+  selector: 'app-suche',
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatIconModule,
+    FilterComponent,
+    SearchbarComponent,
+    BookListComponent,
+  ],
+  templateUrl: './suche.component.html',
+  styleUrl: './suche.component.css',
+  providers: [SearchStateService],
 })
 export class SucheComponent implements OnInit {
-    @ViewChild('sidenav') sidenav!: MatSidenav;
+  @ViewChild('sidenav') sidenav!: MatSidenav;
 
-    isMobile = signal(false);
+  isMobile = signal(false);
 
-    constructor(
-        private breakpointObserver: BreakpointObserver,
-        private stateService: SearchStateService
-    ) {
-        this.breakpointObserver.observe([
-            Breakpoints.Handset,
-            Breakpoints.TabletPortrait
-        ]).subscribe(result => {
-            this.isMobile.set(result.matches);
-        });
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private stateService: SearchStateService,
+  ) {
+    this.breakpointObserver
+      .observe([Breakpoints.Handset, Breakpoints.TabletPortrait])
+      .subscribe(result => {
+        this.isMobile.set(result.matches);
+      });
+  }
+
+  ngOnInit(): void {
+    // Initialsuche falls nötig
+    if (!this.stateService.hasSearched()) {
+      this.stateService.search();
     }
+  }
 
-    ngOnInit(): void {
-        // Initialsuche falls nötig
-        if (!this.stateService.hasSearched()) {
-            this.stateService.search();
-        }
-    }
-
-    toggleSidenav(): void {
-        this.sidenav.toggle();
-    }
+  toggleSidenav(): void {
+    this.sidenav.toggle();
+  }
 }

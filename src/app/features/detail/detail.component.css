@@ -1,161 +1,161 @@
 .detail-container {
-    max-width: 800px;
-    margin: 0 auto;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .back-button {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 24px;
-    color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  color: var(--primary-color);
 }
 
 .detail-card {
-    padding: 24px;
+  padding: 24px;
 }
 
 .book-icon {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 8px;
-    border-radius: 50%;
-    font-size: 24px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 8px;
+  border-radius: 50%;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .detail-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 24px;
 }
 
 .detail-item {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .detail-item.full-width {
-    grid-column: 1 / -1;
+  grid-column: 1 / -1;
 }
 
 .detail-label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
 }
 
 .detail-label mat-icon {
-    font-size: 18px;
-    width: 18px;
-    height: 18px;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
 }
 
 .detail-value {
-    font-size: 16px;
-    color: var(--text-primary);
-    padding-left: 26px;
+  font-size: 16px;
+  color: var(--text-primary);
+  padding-left: 26px;
 }
 
 .detail-value.rating {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .detail-value .stars {
-    color: #ffc107;
-    font-size: 20px;
-    letter-spacing: 2px;
+  color: #ffc107;
+  font-size: 20px;
+  letter-spacing: 2px;
 }
 
 .detail-value .rating-text {
-    color: var(--text-secondary);
-    font-size: 14px;
+  color: var(--text-secondary);
+  font-size: 14px;
 }
 
 .detail-value.price {
-    font-size: 24px;
-    font-weight: 600;
-    color: var(--primary-color);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--primary-color);
 }
 
 .detail-value.tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .detail-value a {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    color: var(--primary-color);
-    text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--primary-color);
+  text-decoration: none;
 }
 
 .detail-value a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .external-link {
-    font-size: 16px;
-    width: 16px;
-    height: 16px;
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
 }
 
 .available {
-    background-color: #e8f5e9 !important;
-    color: #2e7d32 !important;
+  background-color: #e8f5e9 !important;
+  color: #2e7d32 !important;
 }
 
 .unavailable {
-    background-color: #ffebee !important;
-    color: #c62828 !important;
+  background-color: #ffebee !important;
+  color: #c62828 !important;
 }
 
 .divider {
-    margin: 24px 0 16px;
+  margin: 24px 0 16px;
 }
 
 .metadata {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
 }
 
 .metadata mat-icon {
-    font-size: 16px;
-    width: 16px;
-    height: 16px;
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
 }
 
 .loading-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    padding: 48px;
-    color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 48px;
+  color: var(--text-secondary);
 }
 
 /* Responsive */
 @media (max-width: 600px) {
-    .detail-grid {
-        grid-template-columns: 1fr;
-    }
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
 
-    .detail-card {
-        padding: 16px;
-    }
+  .detail-card {
+    padding: 16px;
+  }
 }

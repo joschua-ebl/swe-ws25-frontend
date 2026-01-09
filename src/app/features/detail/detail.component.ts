@@ -12,77 +12,77 @@ import { BuchService } from '../../core/services/buch.service';
 import { Buch } from '../../core/models/buch.model';
 
 @Component({
-    selector: 'app-detail',
-    standalone: true,
-    imports: [
-        CommonModule,
-        MatCardModule,
-        MatButtonModule,
-        MatIconModule,
-        MatChipsModule,
-        MatProgressSpinnerModule,
-        MatDividerModule,
-        MatListModule,
-    ],
-    templateUrl: './detail.component.html',
-    styleUrl: './detail.component.css',
+  selector: 'app-detail',
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatChipsModule,
+    MatProgressSpinnerModule,
+    MatDividerModule,
+    MatListModule,
+  ],
+  templateUrl: './detail.component.html',
+  styleUrl: './detail.component.css',
 })
 export class DetailComponent implements OnInit {
-    @Input() id!: string;
+  @Input() id!: string;
 
-    buch = signal<Buch | null>(null);
+  buch = signal<Buch | null>(null);
 
-    constructor(
-        private readonly router: Router,
-        readonly buchService: BuchService,
-    ) { }
+  constructor(
+    private readonly router: Router,
+    readonly buchService: BuchService,
+  ) {}
 
-    ngOnInit(): void {
-        const buchId = parseInt(this.id, 10);
-        if (isNaN(buchId)) {
-            this.router.navigate(['/suche']);
-            return;
-        }
-
-        this.buchService.findById(buchId).subscribe({
-            next: buch => {
-                this.buch.set(buch);
-            },
-            error: () => {
-                // Fehlerbehandlung im Service
-            },
-        });
+  ngOnInit(): void {
+    const buchId = parseInt(this.id, 10);
+    if (isNaN(buchId)) {
+      this.router.navigate(['/suche']);
+      return;
     }
 
-    zurueck(): void {
-        this.router.navigate(['/suche']);
-    }
+    this.buchService.findById(buchId).subscribe({
+      next: buch => {
+        this.buch.set(buch);
+      },
+      error: () => {
+        // Fehlerbehandlung im Service
+      },
+    });
+  }
 
-    getRatingStars(rating: number): string {
-        return '★'.repeat(rating) + '☆'.repeat(5 - rating);
-    }
+  zurueck(): void {
+    this.router.navigate(['/suche']);
+  }
 
-    formatPreis(preis: number): string {
-        return new Intl.NumberFormat('de-DE', {
-            style: 'currency',
-            currency: 'EUR',
-        }).format(preis);
-    }
+  getRatingStars(rating: number): string {
+    return '★'.repeat(rating) + '☆'.repeat(5 - rating);
+  }
 
-    formatRabatt(rabatt: number): string {
-        return new Intl.NumberFormat('de-DE', {
-            style: 'percent',
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 2,
-        }).format(rabatt);
-    }
+  formatPreis(preis: number): string {
+    return new Intl.NumberFormat('de-DE', {
+      style: 'currency',
+      currency: 'EUR',
+    }).format(preis);
+  }
 
-    formatDatum(datum: string | undefined): string {
-        if (!datum) return '-';
-        return new Date(datum).toLocaleDateString('de-DE', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-        });
-    }
+  formatRabatt(rabatt: number): string {
+    return new Intl.NumberFormat('de-DE', {
+      style: 'percent',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2,
+    }).format(rabatt);
+  }
+
+  formatDatum(datum: string | undefined): string {
+    if (!datum) return '-';
+    return new Date(datum).toLocaleDateString('de-DE', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  }
 }
